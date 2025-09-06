@@ -2,7 +2,7 @@
 FROM node:latest  
 
 # Set working directory inside the container
-WORKDIR /usr/src/app   
+WORKDIR /app
 
 # Copy package.json and package-lock.json first (better layer caching)
 COPY nodeapp/package*.json ./  
