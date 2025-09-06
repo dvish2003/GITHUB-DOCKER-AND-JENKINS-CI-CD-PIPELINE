@@ -5,27 +5,27 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 retry(3) {
-                    git branch: 'main', url: 'https://github.com/HGSChandeepa/test-node'
+                    git branch: 'main', url: 'https://github.com/dvish2003/GITHUB-DOCKER-AND-JENKINS-CI-CD-PIPELINE.git'
                 }
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t adomicarts/nodeapp-cuban:${BUILD_NUMBER} .'
+                sh 'docker build -t dvish2003/nodeapp:%BUILD_NUMBER% .'
             }
         }
         stage('Login to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'samin-docker', variable: 'samindocker')]) {
+               withCredentials([string(credentialsId: 'test-dockerhub-password', variable: 'test-docker-hub-password')]) {
                     script {  
-                        sh "docker login -u adomicarts -p '${samindocker}'"
+                        sh "docker login -u dvish2003 -p ${test-docker-hub-password}"
                     }
                 }
             }
         }
         stage('Push Image') {
             steps {
-                sh "docker push adomicarts/nodeapp-cuban:${BUILD_NUMBER}"
+                sh 'docker push dvish2003/nodeapp:%BUILD_NUMBER%'
             }
         }
     }
