@@ -1,19 +1,20 @@
-# Use the latest version of the Node.js image as the base image
+# Use the latest Node.js base image
 FROM node:latest  
 
-# Set the working directory inside the container to /usr/src/app
-#container ek hdenn ona directory eka
+# Set working directory inside container
 WORKDIR /usr/src/app   
 
-# Copy the contents of the local "nodeapp" directory to the root directory of the container
-#file ek copy wenawa 
-COPY nodeapp/* /  
+# Copy package.json & package-lock.json first (better layer caching)
+COPY nodeapp/package*.json ./  
 
-# Run the npm install command to install the dependencies specified in package.json
+# Install dependencies
 RUN npm install  
 
-# Expose port 3000 to allow incoming connections to the container
+# Copy the rest of the application code
+COPY nodeapp/ .  
+
+# Expose app port
 EXPOSE 3000  
 
-# Start the application by running the "npm start" command
-CMD [ "npm", "start" ]  
+# Run the app
+CMD ["npm", "start"]
