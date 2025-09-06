@@ -4,7 +4,7 @@ FROM node:latest
 # Set working directory inside container
 WORKDIR /usr/src/app   
 
-# Copy package.json & package-lock.json first (better layer caching)
+# Copy only package.json and package-lock.json (for caching layers)
 COPY nodeapp/package*.json ./  
 
 # Install dependencies
