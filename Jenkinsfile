@@ -12,8 +12,13 @@
                         }
                     }
                 }
-            
-                stage('Build Docker Image') {
+            stage('Check workspace') {
+                steps {
+                sh 'ls -R'
+    }
+}
+
+            stage('Build Docker Image') {
                     steps {  
                         sh 'docker build -t dvish2003/nodeapp:$BUILD_NUMBER .'
                     }
