@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 
 # Copy the contents of the local "nodeapp" directory to the root directory of the container
 #file ek copy wenawa 
-COPY nodeapp/* /  
+COPY . . 
 
 # Run the npm install command to install the dependencies specified in package.json
 RUN npm install  
