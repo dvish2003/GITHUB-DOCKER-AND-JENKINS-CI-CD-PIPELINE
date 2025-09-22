@@ -34,10 +34,9 @@
                         }
                     }
                 }
-                
                 stage('Push Image') {
                     steps {
-                        sh 'docker push dvish2003/nodeapp:%BUILD_NUMBER%'
+                      sh 'docker push dvish2003/nodeapp:$BUILD_NUMBER'
                     }
                 }
             }
