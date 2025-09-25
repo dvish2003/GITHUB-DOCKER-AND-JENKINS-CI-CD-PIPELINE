@@ -1,19 +1,20 @@
-# Use the latest version of the Node.js image as the base image
-FROM node:latest  
+# Use Node 18 as base image (stable for production)
+FROM node:18
 
-# Set the working directory inside the container to /usr/src/app
-#container ek hdenn ona directory eka
-WORKDIR /usr/src/app   
+# Set working directory inside container
+WORKDIR /usr/src/app
 
-# Copy the contents of the local "nodeapp" directory to the root directory of the container
-#file ek copy wenawa 
-COPY . . 
+# Copy only package files first (for caching npm install)
+COPY package*.json ./
 
-# Run the npm install command to install the dependencies specified in package.json
-RUN npm install  
+# Install dependencies
+RUN npm install
 
-# Expose port 3000 to allow incoming connections to the container
-EXPOSE 3000  
+# Copy the rest of the project files
+COPY . .
 
-# Start the application by running the "npm start" command
-CMD [ "npm", "start" ]  
+# Expose app port
+EXPOSE 3000
+
+# Start the app
+CMD ["npm", "start"]
