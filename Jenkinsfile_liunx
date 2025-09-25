@@ -12,17 +12,18 @@
                         }
                     }
                 }
-            stage('Check workspace') {
-                steps {
-                sh 'ls -R'
+       stage('Check workspace') {
+    steps {
+        sh 'ls -R | head -50'
+        sh 'find . -name package.json || true'
     }
 }
 
-            stage('Build Docker Image') {
-                    steps {  
-                        sh 'docker build -t dvish2003/nodeapp:$BUILD_NUMBER .'
-                    }
-                }
+           stage('Build Docker Image') {
+    steps {
+        sh 'docker build -t dvish2003/nodeapp:${BUILD_NUMBER} .'
+    }
+}
                 stage('Login to Docker Hub') {
                     steps {
                     withCredentials([string(credentialsId: 'test-dockerhub-password', variable: 'test-docker-hub-password')]) {
