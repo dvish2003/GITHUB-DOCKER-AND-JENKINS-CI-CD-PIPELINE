@@ -12,9 +12,10 @@
                         }
                     }
                 }
-            stage('Check workspace') {
-                steps {
-                sh 'ls -R'
+           stage('Check workspace') {
+    steps {
+        sh 'ls -R'
+        sh 'find . -name package.json'
     }
 }
 
