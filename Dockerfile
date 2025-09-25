@@ -2,7 +2,7 @@
 FROM node:latest  
 
 # Set the working directory inside the container to /usr/src/app
-WORKDIR /usr/src/app  
+WORKDIR /usr/src
 
 # Copy the contents of the local "nodeapp" directory to the root directory of the container
 COPY nodeapp/ ./
