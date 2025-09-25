@@ -18,11 +18,11 @@
     }
 }
 
-            stage('Build Docker Image') {
-                    steps {  
-                        sh 'docker build -t dvish2003/nodeapp:$BUILD_NUMBER .'
-                    }
-                }
+           stage('Build Docker Image') {
+    steps {
+        sh 'docker build -t dvish2003/nodeapp:${BUILD_NUMBER} .'
+    }
+}
                 stage('Login to Docker Hub') {
                     steps {
                     withCredentials([string(credentialsId: 'test-dockerhub-password', variable: 'test-docker-hub-password')]) {
