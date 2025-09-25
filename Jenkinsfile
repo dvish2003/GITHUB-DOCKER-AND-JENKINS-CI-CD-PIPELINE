@@ -12,10 +12,12 @@
                         }
                     }
                 }
-           stage('Check workspace') {
+        stage('Check workspace') {
     steps {
+        sh 'echo "=== Workspace Contents ==="'
         sh 'ls -R'
-        sh 'find . -name package.json'
+        sh 'echo "=== Searching for package.json ==="'
+        sh 'find . -name package.json || true'
     }
 }
 
