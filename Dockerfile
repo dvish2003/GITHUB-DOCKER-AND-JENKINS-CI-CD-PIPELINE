@@ -1,5 +1,5 @@
 # Use the latest version of the Node.js image as the base image
-FROM node:latest  
+FROM node:18  
 
 # Set the working directory inside the container to /usr/src/app
 WORKDIR /home/vishan-chathuranga/Documents/app
