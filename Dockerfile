@@ -1,17 +1,20 @@
 # Use the latest version of the Node.js image as the base image
 FROM node:18  
 
-# Set the working directory inside the container to /usr/src/app
+# Set the working directory inside the container
 WORKDIR /home/vishan-chathuranga/Documents/app
 
-# Copy the contents of the local "nodeapp" directory to the root directory of the container
-COPY nodeapp/ ./
+# Copy package files first (for better caching)
+COPY nodeapp/package*.json ./  
 
-# Run the npm install command to install the dependencies specified in package.json
+# Install dependencies
 RUN npm install  
 
-# Expose port 3000 to allow incoming connections to the container
+# Copy the rest of the app
+COPY nodeapp/ ./  
+
+# Expose port 3000
 EXPOSE 3000  
 
-# Start the application by running the "npm start" command
-CMD [ "npm", "start" ]  
+# Start the application
+CMD ["npm", "start"]
