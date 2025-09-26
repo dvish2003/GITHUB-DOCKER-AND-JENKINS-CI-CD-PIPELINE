@@ -5,7 +5,7 @@ FROM node:18
 WORKDIR /home/vishan-chathuranga/Documents/app
 
 # Copy package files first (for better caching)
-COPY nodeapp/package.json ./  
+COPY nodeapp/package*.json ./  
 
 # Install dependencies
 RUN npm install  
