@@ -2,7 +2,7 @@
 FROM node:18  
 
 # Set the working directory inside the container
-WORKDIR /home/vishan-chathuranga/Documents/app
+WORKDIR /usr/src/app  
 
 # Copy package files first (for better caching)
 COPY nodeapp/package*.json ./  
